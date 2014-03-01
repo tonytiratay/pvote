@@ -12,22 +12,29 @@
   </head>
   <body ng-controller="tablesCtrl">
     
-    <div class="row">
+    <div class="row"><br/>
+      <input ng-model="titre" type="text" placeholder="Titre">
+      <input ng-model="columns" type="number" placeholder="colonnes">
+      <input ng-model="lines" type="number" placeholder="lignes">
+      <input ng-click="setTable()" type="submit">{{tables.length}}
+      <div ng-repeat="table in tables">
+
         <table>
-          <caption>{{tableau1.titre}}</caption>
+          <caption>{{table.titre}}</caption>
           <thead>
             <tr>
              <th></th>
-             <th ng-repeat="column in tableau1.colonnes">{{column.titre}}</th>
+             <th ng-repeat="column in table.colonnes">{{column.titre}}</th>
             </tr>
           </thead>
           <tbody>
-            <tr ng-repeat="line in tableau1.lignes">
+            <tr ng-repeat="line in table.lignes">
             <th>{{line.titre}}</th>
-            <th ng-repeat="event in tableau1.events | limitTo:5">{{event.nbreTotal}}</th>
+            <th ng-repeat="event in table.events | limitTo:table.nbreColonnes">{{event.nbreTotal}}</th>
             </tr>
           </tbody>
         </table>
+      </div>
     </div>
 
     <script src="js/vendor/jquery.js"></script>

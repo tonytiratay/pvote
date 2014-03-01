@@ -54,7 +54,6 @@ var Tableau = function(id, titre, nbreColonnes, nbreLignes){
 			for (co = 1; co < nbrecol + 1; ++co) {
 				event = new Event(li.toString() + co.toString(), 10,10, this.id, co, li, []);
 				this.events.push(event);
-				console.log(event.id);
 			}
 		}
 	};
