@@ -22,22 +22,28 @@
       <input ng-click="setTable()" type="submit" value="Sauver">
 
       <div ng-repeat="table in tables | orderBy:'id':true">
-  <table>
-    <caption>{{table.titre}}</caption>
+  <table style="width:100%;">
+    <caption><input ng-model="table.titre"></caption>
     <thead>
       <tr>
        <th>{{table.id}}</th>
-       <th ng-repeat="column in table.colonnes">{{column.titre}}</th>
+       <th ng-repeat="column in table.colonnes">
+        <input ng-model="column.titre">
+        <input ng-model="column.choix">
+      </th>
       </tr>
     </thead>
     <tbody>
       <tr ng-repeat="line in table.lignes">
-      <th>{{line.titre}} - {{line.id}}</th>
+      <th>
+        <input ng-model="line.titre">
+        <input ng-model="line.choix">
+      </th>
         <th ng-repeat="event in table.events | filter:{ligne:line.id}">
-          <input type="checkbox">
-          <p>{{event.nbreDispo}} / {{event.nbreTotal}}</p>
-          <p>{{event.id}}</p>
-          <p>{{event.ligne}}</p>
+          <label>Dispo</label>          
+          <input ng-model="event.nbreDispo">
+          <label>Total</label>
+          <input ng-model="event.nbreTotal">
         </th>
       </tr>
     </tbody>
