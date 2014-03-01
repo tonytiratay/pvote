@@ -1,0 +1,21 @@
+<div ng-repeat="table in tables | orderBy:'id':true">
+  <table>
+    <caption>{{table.titre}}</caption>
+    <thead>
+      <tr>
+       <th>{{table.id}}</th>
+       <th ng-repeat="column in table.colonnes">{{column.titre}}</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="line in table.lignes">
+      <th>{{line.titre}}</th>
+        <th ng-repeat="event in table.events | limitTo:table.nbreColonnes">
+          <input type="checkbox">
+          <p>{{event.nbreDispo}} / {{event.nbreTotal}}</p<>
+        </th>
+      </tr>
+    </tbody>
+  </table>
+</div>
+    

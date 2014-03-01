@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Foundation | Welcome</title>
+    <title>POWERVOTE | RESERVATION</title>
     <link rel="stylesheet" href="css/foundation.css" />
     <script src="js/vendor/modernizr.js"></script>
     <script src="js/modules/angular.min.js"></script>
@@ -13,28 +13,36 @@
   <body ng-controller="tablesCtrl">
     
     <div class="row"><br/>
+      <label>Titre</label>
       <input ng-model="titre" type="text" placeholder="Titre">
+      <label>Colonnes</label>
       <input ng-model="columns" type="number" placeholder="colonnes">
+      <label>Lignes</label>
       <input ng-model="lines" type="number" placeholder="lignes">
-      <input ng-click="setTable()" type="submit">{{tables.length}}
-      <div ng-repeat="table in tables">
+      <input ng-click="setTable()" type="submit" value="Sauver">
 
-        <table>
-          <caption>{{table.titre}}</caption>
-          <thead>
-            <tr>
-             <th></th>
-             <th ng-repeat="column in table.colonnes">{{column.titre}}</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr ng-repeat="line in table.lignes">
-            <th>{{line.titre}}</th>
-            <th ng-repeat="event in table.events | limitTo:table.nbreColonnes">{{event.nbreTotal}}</th>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+      <div ng-repeat="table in tables | orderBy:'id':true">
+  <table>
+    <caption>{{table.titre}}</caption>
+    <thead>
+      <tr>
+       <th>{{table.id}}</th>
+       <th ng-repeat="column in table.colonnes">{{column.titre}}</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="line in table.lignes">
+      <th>{{line.titre}} - {{line.id}}</th>
+        <th ng-repeat="event in table.events | filter:{ligne:line.id}">
+          <input type="checkbox">
+          <p>{{event.nbreDispo}} / {{event.nbreTotal}}</p>
+          <p>{{event.id}}</p>
+          <p>{{event.ligne}}</p>
+        </th>
+      </tr>
+    </tbody>
+  </table>
+</div>
     </div>
 
     <script src="js/vendor/jquery.js"></script>

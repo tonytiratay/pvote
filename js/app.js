@@ -12,7 +12,8 @@ $scope.setTable = function(){
 	var titre = $scope.titre;
 	var columns = $scope.columns;
 	var lines = $scope.lines;
-	var tableau = new Tableau(1,titre, columns, lines);	
+	var id = $scope.tables.length;
+	var tableau = new Tableau(id,titre, columns, lines);	
 	tableau.createColonnes();
 	tableau.createLignes();
 	tableau.createEvents();
@@ -21,6 +22,19 @@ $scope.setTable = function(){
 	console.log($scope.tables.length + " tableau(x) ajouté(s)");
 };
 
-
+/*angular.module('filterByline', []).
+    filter('filterByLine', function() {
+      return function(input, uppercase) {
+        var out = "";
+        for (var i = 0; i < input.length; i++) {
+          out = input.charAt(i) + out;
+        }
+        // conditional based on optional argument
+        if (uppercase) {
+          out = out.toUpperCase();
+        }
+        return out;
+      };
+    });*/
 
  }]);

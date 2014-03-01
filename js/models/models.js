@@ -52,7 +52,7 @@ var Tableau = function(id, titre, nbreColonnes, nbreLignes){
 		var nbrecol = this.nbreColonnes;
 		for (li = 1; li < nbrelig + 1; ++li) {
 			for (co = 1; co < nbrecol + 1; ++co) {
-				event = new Event(li.toString() + co.toString(), 10,10, this.id, co, li, []);
+				event = new Event(li.toString() + co.toString(), 10,8, this.id, co, li, []);
 				this.events.push(event);
 			}
 		}
