@@ -19,36 +19,43 @@
       <input ng-model="columns" type="number" placeholder="colonnes">
       <label>Lignes</label>
       <input ng-model="lines" type="number" placeholder="lignes">
-      <input ng-click="setTable()" type="submit" value="Sauver">
+      <input ng-click="setTable()" type="submit" value="Créer">
 
       <div ng-repeat="table in tables | orderBy:'id':true">
-  <table style="width:100%;">
-    <caption><input ng-model="table.titre"></caption>
-    <thead>
-      <tr>
-       <th>{{table.id}}</th>
-       <th ng-repeat="column in table.colonnes">
-        <input ng-model="column.titre">
-        <input ng-model="column.choix">
-      </th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr ng-repeat="line in table.lignes">
-      <th>
-        <input ng-model="line.titre">
-        <input ng-model="line.choix">
-      </th>
-        <th ng-repeat="event in table.events | filter:{ligne:line.id}">
-          <label>Dispo</label>          
-          <input ng-model="event.nbreDispo">
-          <label>Total</label>
-          <input ng-model="event.nbreTotal">
-        </th>
-      </tr>
-    </tbody>
-  </table>
-</div>
+        <table style="width:100%;">
+          <caption><input ng-model="table.titre"></caption>
+          <thead>
+            <tr>
+             <th>{{table.id}}</th>
+             <th ng-repeat="column in table.colonnes">
+              <input ng-model="column.titre">
+              <select ng-model="column.choix">
+                <option value="multi">multi</option>
+                <option value="solo">solo</option>
+              </select>
+            </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="line in table.lignes">
+            <th>
+              <input ng-model="line.titre">
+              <select ng-model="line.choix">
+                <option value="multi">multi</option>
+                <option value="solo">solo</option>
+              </select>
+            </th>
+              <th ng-repeat="event in table.events | filter:{ligne:line.id, colonne:column.id}">
+                <span style="text-align:center;">{{table.colonnes[event.colonne-1].titre}} <br> {{line.titre}}</span>
+                <label>Dispo</label>          
+                <input ng-model="event.nbreDispo">
+                <label>Total</label>
+                <input ng-model="event.nbreTotal">
+              </th>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
 
     <script src="js/vendor/jquery.js"></script>

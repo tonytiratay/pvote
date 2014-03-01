@@ -22,19 +22,4 @@ $scope.setTable = function(){
 	console.log($scope.tables.length + " tableau(x) ajouté(s)");
 };
 
-/*angular.module('filterByline', []).
-    filter('filterByLine', function() {
-      return function(input, uppercase) {
-        var out = "";
-        for (var i = 0; i < input.length; i++) {
-          out = input.charAt(i) + out;
-        }
-        // conditional based on optional argument
-        if (uppercase) {
-          out = out.toUpperCase();
-        }
-        return out;
-      };
-    });*/
-
  }]);
